@@ -7,7 +7,6 @@ class Colaborador {
   private int telefone;
   private int setorquetrabalha;
 
-  
   public Colaborador(int codigodocolaborador, string nome, string cpf, int telefone, int setorquetrabalha) {
     this.codigodocolaborador = codigodocolaborador;
     this.nome = nome;
@@ -56,8 +55,8 @@ class Colaborador {
     return setorquetrabalha;
   }
 
-
   public override string ToString() {
     return $"{codigodocolaborador} - {nome} - {cpf} - {telefone} - {setorquetrabalha}";
   }
+  
 }
