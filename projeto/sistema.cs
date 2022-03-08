@@ -4,7 +4,6 @@ using System.Collections.Generic;
 class Sistema {
   private static Setor[] setores = new Setor[10];
   private static int contagem;
-  
   private static List<Colaborador> colaboradores = new List<Colaborador>();
 
   public static void  CriarSetor(Setor obj) {
@@ -49,9 +48,6 @@ class Sistema {
   return -1;
   }
 
-
-// ----------------------------- //
-
   public static void  CriarColaborador(Colaborador obj) {
     colaboradores.Add(obj);
   }
@@ -65,24 +61,11 @@ class Sistema {
       if (obj.GetCodigodocolaborador() == codigodocolaborador) return obj;
     return null;
   }
-  
-  public static void AtualizarColaborador(Colaborador obj) {
-    Colaborador aux = ListarColaborador(obj.GetCodigodocolaborador());
-    if (aux != null) {
-      aux.SetNome(obj.GetNome());
-      aux.SetCodigodocolaborador(obj.GetCodigodocolaborador());
-      aux.SetCpf(obj.GetCpf());
-      aux.SetTelefone(obj.GetTelefone());
-      aux.SetSetorquetrabalha(obj.GetSetorquetrabalha());
-    }
-  }
-    
 
   public static void RemoverColaborador(Colaborador obj) {
     Colaborador aux = ListarColaborador(obj.GetCodigodocolaborador());
     if (aux != null) {
       colaboradores.Remove(aux);
-
     }
   
   }
