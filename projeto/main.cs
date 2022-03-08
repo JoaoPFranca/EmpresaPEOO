@@ -40,7 +40,6 @@ class Empresa {
     int opcao = int.Parse(Console.ReadLine());
     Console.WriteLine("");
     return opcao;
-    
   }
   
   public static void CriarSetor() {
@@ -107,7 +106,6 @@ class Empresa {
     Console.WriteLine("------------------------------------------");
   }
 
-
   public static void RemoverColaborador() {
     Console.WriteLine("----- Remover um setor -----");
     Console.Write("Informe o código do colaborador a ser removido: ");
@@ -120,6 +118,5 @@ class Empresa {
     Sistema.RemoverColaborador(obj);
     Console.WriteLine("----- Operação realizada com sucesso -----");
   }
-
   
 } 
