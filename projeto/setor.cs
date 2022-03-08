@@ -28,4 +28,5 @@ class Setor {
   public override string ToString() {
     return $"{codigodosetor} - {nome}";
   }
+  
 } 
