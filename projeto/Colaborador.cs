@@ -115,5 +115,4 @@ public class Colaborador
     {
         return $"Código do colaborador: {codigodocolaborador} - Nome do colaborador: {nome} - CPF do colaborador: {cpf} - Telefone do colaborador: {telefone} - Código do setor: {codigoSetor}";
     }
-  
 }
