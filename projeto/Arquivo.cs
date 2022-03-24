@@ -20,5 +20,4 @@ class Arquivo<T> {
       xml.Serialize(f, obj);
       f.Close();
     }
-    
 }
