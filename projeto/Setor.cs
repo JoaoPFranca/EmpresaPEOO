@@ -45,6 +45,5 @@ public class Setor
     public override string ToString()
     {
         return $"Código do setor: {codigodosetor} - Nome do setor: {nome}";
-    }
-    
+    }   
 }
