@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfConsumidor xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Consumidor>
+    <Codigo>1</Codigo>
+    <Nome>Marcos</Nome>
+    <Telefone>1324</Telefone>
+  </Consumidor>
+  <Consumidor>
+    <Codigo>2</Codigo>
+    <Nome>Gilbert</Nome>
+    <Telefone>5317</Telefone>
+  </Consumidor>
+</ArrayOfConsumidor>

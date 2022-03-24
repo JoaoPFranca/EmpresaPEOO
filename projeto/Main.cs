@@ -10,6 +10,15 @@ class Empresa
     {
         Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
 
+      try {
+        Sistema.AbrirArquivo();
+      }
+      catch (Exception erro) {
+        Console.WriteLine(erro.Message);
+      }
+
+      
+
         Console.WriteLine("Aplicativo da Empresa S/A versão BETA");
         int opcao = 0;
         int funcao = 0;
@@ -17,111 +26,172 @@ class Empresa
         {
             try
             {
-                if(funcao == 0) {
-                  opcao = 0;
-                  funcao = MenuDoConsumidor();
-                    
+                if (funcao == 0)
+                {
+                    opcao = 0;
+                    funcao = MenuDoConsumidor();
+
                 }
-                if(funcao == 1) {
-                  opcao = MenuDoADM();
-                  switch (opcao)
-                  {
-                      case 1: CriarSetor(); break;
-                      case 2: ListarSetor(); break;
-                      case 3: AtualizarSetor(); break;
-                      case 4: RemoverSetor(); break;
-                      case 5: CriarColaborador(); break;
-                      case 6: ListarColaborador(); break;
-                      case 7: AtualizarColaborador(); break;
-                      case 8: RemoverColaborador(); break;
-                      case 9: CriarConsumidor(); break;
-                      case 10: ListarConsumidor(); break;
-                      case 11: AtualizarConsumidor(); break;
-                      case 12: RemoverConsumidor(); break;
-                      case 13: CriarTarefa(); break;
-                      case 14: ListarTarefa(); break;
-                      case 15: AtualizarTarefa(); break;
-                      case 16: RemoverTarefa(); break;
-                      case 17: AgendamentoAbrirAgenda(); break;
-                      case 18: AgendamentoSupervisionarAgenda(); break;
-                      case 19: funcao = 0; break;
-                  }
+                if (funcao == 1)
+                {
+                    opcao = MenuDoADM();
+                    switch (opcao)
+                    {
+                        case 1: CriarSetor(); break;
+                        case 2: ListarSetor(); break;
+                        case 3: AtualizarSetor(); break;
+                        case 4: RemoverSetor(); break;
+                        case 5: CriarColaborador(); break;
+                        case 6: ListarColaborador(); break;
+                        case 7: AtualizarColaborador(); break;
+                        case 8: RemoverColaborador(); break;
+                        case 9: CriarConsumidor(); break;
+                        case 10: ListarConsumidor(); break;
+                        case 11: AtualizarConsumidor(); break;
+                        case 12: RemoverConsumidor(); break;
+                        case 13: CriarTarefa(); break;
+                        case 14: ListarTarefa(); break;
+                        case 15: AtualizarTarefa(); break;
+                        case 16: RemoverTarefa(); break;
+                        case 17: AgendamentoAbrirAgenda(); break;
+                        case 18: AgendamentoSupervisionarAgenda(); break;
+                        case 99: funcao = 0; break;
+                    }
                 }
 
-                if(funcao == 2 && consumidorLogin == null) {
-                  opcao = MenuLoginConsumidor();
-                  switch(opcao) {
-                    case 1: ConsumidorLogin(); break;
-                    case 2: funcao = 0; break;
-                  }
-                  
+                if (funcao == 2 && consumidorLogin == null)
+                {
+                    opcao = MenuLoginConsumidor();
+                    switch (opcao)
+                    {
+                        case 1: ConsumidorLogin(); break;
+                        case 2: funcao = 0; break;
+                    }
+
                 }
-                  
-                if(funcao == 2 && consumidorLogin != null) {
-                  opcao = MenuLogoutConsumidor();
-                    switch(opcao) {
-                    case 1: ConsumidorChecarHorariosDisponiveis(); break;
-                    case 2: ConsumidorAgendarReuniao(); break;
-                    case 3: ConsumidorListarReunioesPassadas(); break;
-                    case 4: ConsumidorListarQuemMeAtende(); break;
-                    case 5: ConsumidorLogout(); break;
-                  }
+
+                if (funcao == 2 && consumidorLogin != null)
+                {
+                    opcao = MenuLogoutConsumidor();
+                    switch (opcao)
+                    {
+                        case 1: ConsumidorChecarHorariosDisponiveis(); break;
+                        case 2: ConsumidorAgendarReuniao(); break;
+                        case 3: ConsumidorListarReunioesPassadas(); break;
+                        case 4: ConsumidorListarQuemMeAtende(); break;
+                        case 99: ConsumidorLogout(); break;
+                    }
                 }
-                  
-                }
+
+            }
             catch (Exception erro)
             {
                 opcao = -1;
                 Console.WriteLine("Erro: " + erro.Message);
             }
         } while (opcao != 0);
+
+      try {
+        Sistema.SalvarArquivo();
+      }
+      catch (Exception erro) {
+        Console.WriteLine(erro.Message);
+      }
     }
 
-    public static void ConsumidorLogin() {
-      Console.WriteLine("----- Login do consumidor -----");
-      ListarConsumidor();
-      Console.Write("Informe o código do cliente para Login: ");
-      int Codigo = int.Parse(Console.ReadLine());
-      consumidorLogin = Sistema.ListarConsumidor(Codigo);
-      
+    public static void ConsumidorLogin()
+    {
+        Console.WriteLine("----- Login do consumidor -----");
+        ListarConsumidor();
+        Console.Write("Informe o código do consumidor para logar: ");
+        int Codigo = int.Parse(Console.ReadLine());
+        consumidorLogin = Sistema.ListarConsumidor(Codigo);
+
     }
 
-    public static void ConsumidorLogout() {
-      Console.WriteLine("----- Logout do consumidor -----");
-      consumidorLogin = null;
-      
+    public static void ConsumidorLogout()
+    {
+        Console.WriteLine("----- Logout do consumidor -----");
+        consumidorLogin = null;
+
     }
 
-    public static void ConsumidorChecarHorariosDisponiveis() {
+    public static void ConsumidorAgendarReuniao()
+    {
+        Console.WriteLine("----- Horários disponíveis -----");
+        foreach (Agendamento obj in Sistema.ListarAgendamento(DateTime.Today))
+            Console.WriteLine(obj);
+        Console.WriteLine("------------------------------------------");
+        Console.Write("Informe o código do horário para reunião: ");
+        int codigoAgendamento = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("----- Listar os colaboradores cadastrados -----");
+        foreach (Colaborador obj in Sistema.ListarColaborador(consumidorLogin))
+        {
+            Setor s = Sistema.ListarSetor(obj.GetCodigoDoSetor());
+            Consumidor c = Sistema.ListarConsumidor(obj.GetCodigoDoConsumidor());
+            Console.WriteLine($"{obj} - Nome do setor: {s.GetNome()} - Nome do consumidor: {c.Nome}");
+        }
+        Console.WriteLine("Informe o código do colaborador: ");
+        int codigodocolaborador = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("----- Listar as tarefas cadastradas -----");
+        foreach (Tarefa obj in Sistema.ListarTarefa())
+            Console.WriteLine(obj);
+        Console.WriteLine("Informe o código da tarefa: ");
+        int codigodatarefa = int.Parse(Console.ReadLine());
+        Agendamento agendamento = new Agendamento()
+        {
+            Codigo = codigoAgendamento,
+            CodigoDoConsumidor = consumidorLogin.Codigo,
+            CodigoDoColaborador = codigodocolaborador,
+            CodigoDaTarefa = codigodatarefa
+        };
       
+        Sistema.AtualizarAgendamento(agendamento);
+        Console.WriteLine("----- Operação realizada com sucesso -----");
     }
 
-    public static void ConsumidorAgendarReuniao() {
-      
+    public static void ConsumidorChecarHorariosDisponiveis()
+    {
+        Console.WriteLine("----- Horários disponíveis -----");
+        foreach (Agendamento obj in Sistema.ListarAgendamento(DateTime.Today))
+            Console.WriteLine(obj);
+        Console.WriteLine("------------------------------------------");
     }
 
-    public static void ConsumidorListarReunioesPassadas() {
-      
+    public static void ConsumidorListarReunioesPassadas()
+    {
+        Console.WriteLine("----- Minhas reuniões -----");
+        foreach (Agendamento obj in Sistema.ListarAgendamento(consumidorLogin))
+            Console.WriteLine(obj);
+        Console.WriteLine("------------------------------------------");
     }
 
-    public static void ConsumidorListarQuemMeAtende() {
-      
+    public static void ConsumidorListarQuemMeAtende()
+    {
+        Console.WriteLine("----- Meus colaboradores -----");
+        foreach (Colaborador obj in Sistema.ListarColaborador())
+        {
+            Setor s = Sistema.ListarSetor(obj.GetCodigoDoSetor());
+            Consumidor c = Sistema.ListarConsumidor(obj.GetCodigoDoConsumidor());
+            Console.WriteLine($"{obj} - Nome do setor: {s.GetNome()} - Nome do consumidor: {c.Nome}");
+        }
     }
 
-      
-
-    public static int MenuDoConsumidor() {
-      Console.WriteLine();
-      Console.WriteLine("---------------Quem é você?----------------");
-      Console.WriteLine("01 - Funcionário");
-      Console.WriteLine("02 - Consumidor");
-      Console.WriteLine("");
-      Console.WriteLine("00 - Fechar a aplicação");
-      Console.WriteLine("-------------------------------------------");
-      Console.Write("Opção: ");
-      int opcao = int.Parse(Console.ReadLine());
-      Console.WriteLine("");
-      return opcao;
+    public static int MenuDoConsumidor()
+    {
+        Console.WriteLine();
+        Console.WriteLine("---------------Quem é você?----------------");
+        Console.WriteLine("01 - Entrar como administrador");
+        Console.WriteLine("02 - Entrar como consumidor");
+        Console.WriteLine("");
+        Console.WriteLine("00 - Fechar a aplicação");
+        Console.WriteLine("-------------------------------------------");
+        Console.Write("Opção: ");
+        int opcao = int.Parse(Console.ReadLine());
+        Console.WriteLine("");
+        return opcao;
     }
 
     public static int MenuDoADM()
@@ -145,7 +215,7 @@ class Empresa
         Console.WriteLine("16 - Remover uma tarefa");
         Console.WriteLine("17 - Abrir agenda");
         Console.WriteLine("18 - Supervisionar agenda");
-        Console.WriteLine("19 - Voltar ao Menu Principal");
+        Console.WriteLine("99 - Voltar ao menu principal");
         Console.WriteLine("00 - Fechar o sistema");
         Console.WriteLine("---------------------------------");
         Console.Write("Opção:  ");
@@ -155,7 +225,8 @@ class Empresa
 
     }
 
-      public static int MenuLoginConsumidor() {
+    public static int MenuLoginConsumidor()
+    {
         Console.WriteLine();
         Console.WriteLine("-------------------------------");
         Console.WriteLine("01 - Login");
@@ -169,7 +240,8 @@ class Empresa
         return opcao;
     }
 
-      public static int MenuLogoutConsumidor() {
+    public static int MenuLogoutConsumidor()
+    {
         Console.WriteLine();
         Console.WriteLine("-------------------------------");
         Console.WriteLine("Saudações, " + consumidorLogin.Nome);
@@ -178,7 +250,7 @@ class Empresa
         Console.WriteLine("02 - Agendar uma reunião");
         Console.WriteLine("03 - Listar a data das reuniões comigo");
         Console.WriteLine("04 - Listar quem me atende");
-        Console.WriteLine("05 - Logout");
+        Console.WriteLine("99 - Logout");
         Console.WriteLine("");
         Console.WriteLine("00 - Fechar a aplicação");
         Console.WriteLine("-------------------------------");
@@ -256,7 +328,7 @@ class Empresa
     public static void ListarColaborador()
     {
         Console.WriteLine("----- Listar os colaboradores cadastrados -----");
-        foreach (Colaborador obj in Sistema.ListarColaborador()) 
+        foreach (Colaborador obj in Sistema.ListarColaborador())
         {
             Setor s = Sistema.ListarSetor(obj.GetCodigoDoSetor());
             Consumidor c = Sistema.ListarConsumidor(obj.GetCodigoDoConsumidor());
@@ -309,7 +381,7 @@ class Empresa
         string nome = Console.ReadLine();
         Console.Write("Informe o telefone do novo consumidor (APENAS NÚMEROS): ");
         int telefone = int.Parse(Console.ReadLine());
-        Consumidor obj = new Consumidor { Nome = nome , Telefone = telefone };
+        Consumidor obj = new Consumidor { Nome = nome, Telefone = telefone };
         Sistema.CriarConsumidor(obj);
         Console.WriteLine("----- Operação realizada com sucesso -----");
     }
@@ -341,7 +413,7 @@ class Empresa
         Console.WriteLine("----- Remover um consumidor -----");
         Console.Write("Informe o código do consumidor a ser removido: ");
         int codigo = int.Parse(Console.ReadLine());
-        Consumidor obj = new Consumidor{Codigo = codigo };
+        Consumidor obj = new Consumidor { Codigo = codigo };
         Sistema.RemoverConsumidor(obj);
         Console.WriteLine("----- Operação realizada com sucesso -----");
     }
@@ -401,9 +473,16 @@ class Empresa
     {
         Console.WriteLine("----- Supervisionar agenda -----");
         foreach (Agendamento obj in Sistema.ListarAgendamento())
-            Console.WriteLine(obj);
+        {
+            Consumidor cons = Sistema.ListarConsumidor(obj.CodigoDoConsumidor);
+            Colaborador cola = Sistema.ListarColaborador(obj.CodigoDoColaborador);
+            Tarefa tare = Sistema.ListarTarefa(obj.CodigoDaTarefa);
+            if (cons != null)
+                Console.WriteLine("Horários: " + obj + " - Nome do consumidor: " + cons.Nome + " - Nome do colaborador: " + cola.GetNome() + " - Descrição: " + tare.Descricao);
+            else
+                Console.WriteLine(obj);
+        }
         Console.WriteLine("------------------------------------------");
     }
-
-
+  
 }

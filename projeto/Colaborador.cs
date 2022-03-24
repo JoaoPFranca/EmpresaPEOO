@@ -1,6 +1,6 @@
 using System;
 
-class Colaborador
+public class Colaborador
 {
     private int codigodocolaborador;
     private string nome;
@@ -9,6 +9,38 @@ class Colaborador
     private int codigoSetor;
     private int codigoConsumidor;
 
+    public int Codigodocolaborador {
+      get => codigodocolaborador;
+      set => codigodocolaborador = value;
+    }
+
+    public string Nome {
+      get => nome;
+      set => nome = value;
+    }
+
+    public string Cpf {
+      get => cpf;
+      set => cpf = value;
+    }
+
+    public int Telefone {
+      get => telefone;
+      set => telefone = value;
+    }
+
+    public int Codigosetor {
+      get => codigoSetor;
+      set => codigoSetor = value;
+    }
+  
+    public int Codigoconsumidor {
+      get => codigoConsumidor;
+      set => codigoConsumidor = value;
+    }
+    
+    
+    public Colaborador() { }
     public Colaborador(int codigodocolaborador, string nome, string cpf, int telefone, int codigoSetor, int codigoConsumidor)
     {
         this.codigodocolaborador = codigodocolaborador;
@@ -83,4 +115,5 @@ class Colaborador
     {
         return $"Código do colaborador: {codigodocolaborador} - Nome do colaborador: {nome} - CPF do colaborador: {cpf} - Telefone do colaborador: {telefone} - Código do setor: {codigoSetor}";
     }
+  
 }

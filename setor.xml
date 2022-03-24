@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSetor xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Setor>
+    <Codigodosetor>1</Codigodosetor>
+    <Nome>contabilidade</Nome>
+  </Setor>
+  <Setor>
+    <Codigodosetor>2</Codigodosetor>
+    <Nome>computação</Nome>
+  </Setor>
+</ArrayOfSetor>

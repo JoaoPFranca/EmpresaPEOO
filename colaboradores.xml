@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfColaborador xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Colaborador>
+    <Codigodocolaborador>1</Codigodocolaborador>
+    <Nome>hélio</Nome>
+    <Cpf>000</Cpf>
+    <Telefone>1234</Telefone>
+    <Codigosetor>1</Codigosetor>
+    <Codigoconsumidor>0</Codigoconsumidor>
+  </Colaborador>
+  <Colaborador>
+    <Codigodocolaborador>1</Codigodocolaborador>
+    <Nome>João</Nome>
+    <Cpf>001</Cpf>
+    <Telefone>8234</Telefone>
+    <Codigosetor>1</Codigosetor>
+    <Codigoconsumidor>2</Codigoconsumidor>
+  </Colaborador>
+</ArrayOfColaborador>

@@ -1,10 +1,21 @@
 using System;
 
-class Setor
+public class Setor
 {
-    public int codigodosetor;
-    public string nome;
+    private int codigodosetor;
+    private string nome;
 
+    public int Codigodosetor {
+      get => codigodosetor;
+      set => codigodosetor = value;
+    }
+
+    public string Nome {
+      get => nome;
+      set => nome = value;
+    }
+
+    public Setor() {}
     public Setor(int codigodosetor, string nome)
     {
         this.nome = nome;

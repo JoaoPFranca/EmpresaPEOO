@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
+using System.IO;
+using System.Text;
 
 class Sistema
 {
@@ -9,6 +12,63 @@ class Sistema
     private static List<Consumidor> consumidores = new List<Consumidor>();
     private static List<Tarefa> tarefas = new List<Tarefa>();
     private static List<Agendamento> agendamentos = new List<Agendamento>();
+
+
+    public static void AbrirArquivo() {
+      Arquivo<Setor[]> f1 = new Arquivo<Setor[]>();
+      setores = f1.Abrir("./setor.xml");
+      contagem = setores.Length;
+
+      Arquivo<List<Colaborador>> f2 = new Arquivo<List<Colaborador>>();
+      colaboradores = f2.Abrir("./colaboradores.xml");
+
+      Arquivo<List<Consumidor>> f3 = new Arquivo<List<Consumidor>>();
+      consumidores = f3.Abrir("./consumidores.xml");
+
+      Arquivo<List<Tarefa>> f4 = new Arquivo<List<Tarefa>>();
+      tarefas = f4.Abrir("./tarefas.xml");
+
+      Arquivo<List<Agendamento>> f5 = new Arquivo<List<Agendamento>>();
+      agendamentos = f5.Abrir("./agendamentos.xml");
+
+
+      /*
+      XmlSerializer xml = new XmlSerializer(typeof(Setor[]));
+      StreamReader f = new StreamReader("./setor.xml", Encoding.Default);
+      setores = (Setor[]) xml.Deserialize(f);
+      contagem = setores.Length;
+      f.Close();
+      */
+    }
+
+    public static void SalvarArquivo() {
+      Arquivo<Setor[]> f1 = new Arquivo<Setor[]>();
+      f1.Salvar("./setor.xml", ListarSetor());
+
+      Arquivo<List<Colaborador>> f2 = new Arquivo<List<Colaborador>>();
+      f2.Salvar("./colaboradores.xml", colaboradores);
+
+      Arquivo<List<Consumidor>> f3 = new Arquivo<List<Consumidor>>();
+      f3.Salvar("./consumidores.xml", consumidores);
+
+      Arquivo<List<Tarefa>> f4 = new Arquivo<List<Tarefa>>();
+      f4.Salvar("./tarefas.xml", tarefas);
+
+      Arquivo<List<Agendamento>> f5 = new Arquivo<List<Agendamento>>();
+      f5.Salvar("./agendamentos.xml", agendamentos);
+
+
+
+
+
+      /*
+      XmlSerializer xml = new XmlSerializer(typeof(Setor[]));
+      StreamWriter f = new StreamWriter("./setor.xml", false, Encoding.Default);
+      xml.Serialize(f, ListarSetor());
+      f.Close();
+      */
+      
+    }
 
     public static void CriarSetor(Setor obj)
     {
@@ -221,6 +281,15 @@ class Sistema
         return a;
     }
 
+    public static List<Agendamento> ListarAgendamento(DateTime data)
+    {
+        List<Agendamento> a = new List<Agendamento>();
+        foreach (Agendamento obj in agendamentos)
+            if (obj.CodigoDoConsumidor == 0 && obj.DataHora.Date == data.Date)
+                a.Add(obj);
+        return a;
+    }
+
     public static Agendamento ListarAgendamento(int codigodocolaborador)
     {
         foreach (Agendamento obj in agendamentos)
@@ -233,11 +302,12 @@ class Sistema
         Agendamento aux = ListarAgendamento(obj.Codigo);
         if (aux != null)
         {
-            aux.DataHora = obj.DataHora;
+            //aux.DataHora = obj.DataHora;
             aux.CodigoDoConsumidor = obj.CodigoDoConsumidor;
             aux.CodigoDoColaborador = obj.CodigoDoColaborador;
             aux.CodigoDaTarefa = obj.CodigoDaTarefa;
         }
+      
     }
 
     public static void RemoverAgendamento(Agendamento obj)

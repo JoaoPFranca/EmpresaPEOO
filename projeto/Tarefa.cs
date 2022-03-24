@@ -1,6 +1,6 @@
 using System;
 
-class Tarefa
+public class Tarefa
 {
     public int Codigo { get; set; }
     public string Descricao { get; set; }
@@ -8,4 +8,5 @@ class Tarefa
     {
         return $"{Codigo} - {Descricao}";
     }
+  
 }

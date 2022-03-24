@@ -1,6 +1,6 @@
 using System;
 
-class Agendamento
+public class Agendamento
 {
     public int Codigo { get; set; }
     public DateTime DataHora { get; set; }
@@ -10,8 +10,9 @@ class Agendamento
     public int Telefone { get; set; }
     public override string ToString()
     {
-        string s = $"{Codigo} {DataHora:dd/MM/yyyy:mm}";
+        string s = $"{Codigo} - {DataHora:dd/MM/yyyy:mm}";
         if (CodigoDoConsumidor == 0) s += " - Vago";
         return s;
     }
+  
 }

@@ -1,7 +1,8 @@
 using System;
 
-class Consumidor
+public class Consumidor
 {
+
     public int Codigo { get; set; }
     public string Nome { get; set; }
     public int Telefone { get; set; }
@@ -9,4 +10,5 @@ class Consumidor
     {
         return $"Código do consumidor: {Codigo} - Nome do consumidor: {Nome} - Telefone do consumidor: {Telefone}";
     }
+  
 }
