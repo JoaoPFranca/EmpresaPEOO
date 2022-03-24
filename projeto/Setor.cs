@@ -46,4 +46,5 @@ public class Setor
     {
         return $"Código do setor: {codigodosetor} - Nome do setor: {nome}";
     }
+    
 }
