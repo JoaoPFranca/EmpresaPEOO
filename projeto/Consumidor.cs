@@ -10,5 +10,4 @@ public class Consumidor
     {
         return $"Código do consumidor: {Codigo} - Nome do consumidor: {Nome} - Telefone do consumidor: {Telefone}";
     }
-  
 }
