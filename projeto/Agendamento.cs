@@ -14,4 +14,5 @@ public class Agendamento
         if (CodigoDoConsumidor == 0) s += " - Vago";
         return s;
     }
+  
 }
