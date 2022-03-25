@@ -1,6 +1,6 @@
 using System;
 
-public class Setor
+public class Setor : IComparable <Setor>
 {
     private int codigodosetor;
     private string nome;
@@ -42,8 +42,12 @@ public class Setor
         return nome;
     }
 
+    public int CompareTo (Setor s) {
+      return nome.CompareTo(s.GetNome());
+    }
+  
     public override string ToString()
     {
-        return $"Código do setor: {codigodosetor} - Nome do setor: {nome}";
-    }   
+        return $"{codigodosetor} - {nome}";
+    }
 }
