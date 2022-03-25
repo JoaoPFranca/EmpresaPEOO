@@ -1,6 +1,6 @@
 using System;
 
-public class Colaborador
+public class Colaborador : IComparable <Colaborador>
 {
     private int codigodocolaborador;
     private string nome;
@@ -111,8 +111,13 @@ public class Colaborador
         return codigoConsumidor;
     }
 
+    public int CompareTo (Colaborador c) {
+      return nome.CompareTo(c.GetNome());
+    }
+  
     public override string ToString()
     {
-        return $"Código do colaborador: {codigodocolaborador} - Nome do colaborador: {nome} - CPF do colaborador: {cpf} - Telefone do colaborador: {telefone} - Código do setor: {codigoSetor}";
+        return $"{codigodocolaborador} - {nome} - {cpf} - {telefone} -  {codigoSetor}";
     }
+  
 }
