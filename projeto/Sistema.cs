@@ -82,6 +82,7 @@ class Sistema
     {
         Setor[] aux = new Setor[contagem];
         Array.Copy(setores, aux, contagem);
+        Array.Sort(aux);
         return aux;
     }
 
@@ -178,6 +179,7 @@ class Sistema
 
     public static List<Consumidor> ListarConsumidor()
     {
+        consumidores.Sort();
         return consumidores;
     }
 
@@ -318,4 +320,5 @@ class Sistema
             agendamentos.Remove(aux);
         }
     }
+
 }
